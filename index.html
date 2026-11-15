@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Shyaam Library"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png">
+<title>श्री Shyaam Library Pro</title>
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#172033;--muted:#718096;--line:#e7ebf2;--navy:#101827;--blue:#3568e8;--blue2:#edf2ff;--green:#16845b;--greenbg:#e8f7f0;--red:#c33d4b;--redbg:#fff0f1;--amber:#a96b0b;--amberbg:#fff6e5;--shadow:0 8px 28px rgba(22,34,56,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+.app{max-width:1120px;margin:auto;min-height:100vh;padding-bottom:88px}.top{background:var(--navy);color:#fff;padding:22px 20px 25px;border-radius:0 0 24px 24px}.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:20px;font-weight:800;letter-spacing:.1px}.sub{font-size:12px;color:#b9c4d5;margin-top:4px}.date{font-size:12px;color:#d3dbea;background:#263348;padding:8px 11px;border-radius:20px;white-space:nowrap}.welcome{margin-top:24px;font-size:13px;color:#b9c4d5}.welcome b{display:block;font-size:25px;color:#fff;margin-top:4px}
+.nav{display:flex;gap:7px;overflow:auto;padding:13px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav button{border:0;background:transparent;color:#657187;padding:10px 13px;border-radius:12px;white-space:nowrap;font-size:13px;font-weight:650}.nav button.active{background:var(--blue2);color:var(--blue)}
+main{padding:20px 16px}.page{display:none}.page.active{display:block}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:3px 0 15px}.sectionhead h2{font-size:19px;margin:0}.muted{color:var(--muted)}.small{font-size:12px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:var(--card);padding:16px;border-radius:17px;box-shadow:var(--shadow);min-width:0}.stat .label{font-size:12px;color:var(--muted)}.stat .num{font-size:25px;font-weight:800;margin-top:8px;letter-spacing:-.6px}.stat .hint{font-size:11px;color:var(--muted);margin-top:4px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:15px}.panel{background:#fff;border-radius:17px;padding:17px;box-shadow:var(--shadow);min-width:0}.panel h3{font-size:15px;margin:0 0 13px}.quick{display:flex;gap:9px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:11px 14px;font-weight:700;font-size:13px}.primary{background:var(--blue);color:#fff}.secondary{background:var(--blue2);color:var(--blue)}.soft{background:#f0f2f6;color:#46536a}.danger{background:var(--redbg);color:var(--red)}.success{background:var(--greenbg);color:var(--green)}.full{width:100%}
+.rowitem{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}.rowitem:last-child{border:0}.avatar{width:38px;height:38px;border-radius:12px;background:#edf2ff;color:#3568e8;display:grid;place-items:center;font-weight:800;flex:none}.person{display:flex;align-items:center;gap:10px;min-width:0}.person b{display:block;font-size:13px}.person span{font-size:11px;color:var(--muted)}.tag{display:inline-block;padding:5px 8px;border-radius:20px;font-size:10px;font-weight:750;white-space:nowrap}.paid{background:var(--greenbg);color:var(--green)}.pending{background:var(--amberbg);color:var(--amber)}.absent{background:var(--redbg);color:var(--red)}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;min-width:0}.field label{font-size:12px;font-weight:700;color:#526078}.field input,.field select{width:100%;border:1px solid #dfe5ee;border-radius:11px;padding:12px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #3568e81a}.search{flex:1;min-width:170px}.tablewrap{overflow:auto;background:#fff;border-radius:16px;box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);font-size:12px}th{color:#718096;background:#fafbfc;font-weight:700}td{color:#263248}tr:last-child td{border:0}.empty{text-align:center;padding:28px;color:var(--muted);font-size:13px}
+.modalback{position:fixed;inset:0;background:#10182780;display:none;align-items:flex-end;justify-content:center;z-index:20;padding:12px}.modalback.show{display:flex}.modal{background:#fff;border-radius:22px 22px 16px 16px;padding:20px;width:min(100%,520px);max-height:90vh;overflow:auto;box-shadow:0 20px 60px #0003}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.modalhead h3{margin:0;font-size:18px}.close{border:0;background:#f1f3f7;border-radius:9px;width:34px;height:34px;font-size:20px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.formgrid .wide{grid-column:1/-1}.actions{display:flex;gap:9px;margin-top:15px}.actions button{flex:1}.notice{background:#f7f9fc;border:1px solid var(--line);padding:12px;border-radius:12px;font-size:12px;color:#637087;line-height:1.5}.seatgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.seat{border:1px solid var(--line);border-radius:12px;padding:13px 4px;text-align:center;background:#fff}.seat b{display:block;font-size:14px}.seat span{font-size:10px;color:var(--muted)}.seat.occupied{background:var(--blue2);border-color:#cbd8ff}.seat.free{background:#f1fbf6;border-color:#d6f0e2}
+.bottomnote{text-align:center;color:#98a2b3;font-size:10px;padding:20px 0}.hidden{display:none!important}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.top{padding-top:18px}.stat .num{font-size:23px}.nav{top:0}.sectionhead{align-items:flex-start}.seatgrid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:721px){.modalback{align-items:center}.modal{border-radius:20px}}
+
+.login-overlay{position:fixed;inset:0;background:#101827;z-index:50;display:flex;align-items:center;justify-content:center;padding:22px}
+.login-card{width:min(100%,390px);background:#fff;border-radius:24px;padding:26px;box-shadow:0 24px 80px #0005}
+.login-mark{width:58px;height:58px;border-radius:17px;background:#edf2ff;color:#3568e8;display:grid;place-items:center;font-size:27px;margin-bottom:17px}
+.login-card h2{margin:0 0 6px;font-size:22px}.login-card p{color:#718096;font-size:13px;line-height:1.5}
+.login-card input{width:100%;padding:14px;border:1px solid #dfe5ee;border-radius:12px;margin:10px 0 14px;font-size:18px;letter-spacing:5px;text-align:center}
+.login-error{color:#c33d4b;font-size:12px;min-height:18px}
+.cloudbox{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px}
+.cloudbox h4{margin:0 0 8px;font-size:14px}
+
+</style>
+</head>
+<body>
+
+<div class="login-overlay" id="loginOverlay">
+ <div class="login-card">
+  <div class="login-mark">📚</div>
+  <h2>श्री Shyaam Library</h2>
+  <p>Admin access · Enter your app PIN to continue.</p>
+  <input id="loginPin" type="password" inputmode="numeric" maxlength="8" placeholder="••••" autocomplete="current-password">
+  <div class="login-error" id="loginError"></div>
+  <button class="btn primary full" onclick="unlockApp()">Unlock Admin App</button>
+  <p style="font-size:11px;margin-top:14px">First-time PIN: <b>1234</b>. Change it in Settings after signing in.</p>
+ </div>
+</div>
+
+<div class="app" id="mainApp" style="visibility:hidden">
+<header class="top">
+ <div class="toprow"><div><div class="brand" id="brandName">श्री Shyaam Library</div><div class="sub">Library Management • Admin Panel</div></div><div class="date" id="todayPill"></div></div>
+ <div class="welcome">WELCOME BACK,<b>Library Admin 👋</b></div>
+</header>
+<nav class="nav" aria-label="Main navigation">
+ <button class="active" data-page="dashboard">Overview</button><button data-page="students">Students</button><button data-page="fees">Fees</button><button data-page="attendance">Attendance</button><button data-page="seats">Seats</button><button data-page="reports">Reports</button><button data-page="whatsapp">WhatsApp</button><button data-page="settings">Settings</button>
+</nav>
+<main>
+<section class="page active" id="dashboard">
+ <div class="sectionhead"><div><h2>Dashboard</h2><div class="muted small" id="dashDate"></div></div><button class="btn primary" onclick="openStudent()">+ Add Student</button></div>
+ <div class="grid">
+  <div class="stat"><div class="label">Active Students</div><div class="num" id="statStudents">0</div><div class="hint">Registered members</div></div>
+  <div class="stat"><div class="label">Fees Collected</div><div class="num" id="statIncome">₹0</div><div class="hint">This month</div></div>
+  <div class="stat"><div class="label">Pending Fees</div><div class="num" id="statPending">₹0</div><div class="hint">This month</div></div>
+  <div class="stat"><div class="label">Seats Occupied</div><div class="num" id="statSeats">0/50</div><div class="hint">Assigned seats</div></div>
+ </div>
+ <div class="two">
+  <div class="panel"><h3>Recent Students</h3><div id="recentStudents"></div></div>
+  <div class="panel"><h3>Quick Actions</h3><div class="quick"><button class="btn primary" onclick="openStudent()">Add student</button><button class="btn secondary" onclick="go('fees')">Collect fee</button><button class="btn secondary" onclick="go('attendance')">Mark attendance</button><button class="btn soft" onclick="go('seats')">View seats</button></div><div class="notice" style="margin-top:15px">Fee plans: Day ₹500 · Day-Night ₹750 · Night ₹350</div></div>
+ </div>
+</section>
+<section class="page" id="students">
+ <div class="sectionhead"><div><h2>Students</h2><div class="muted small">Manage library memberships</div></div><button class="btn primary" onclick="openStudent()">+ Add Student</button></div>
+ <div class="toolbar"><input class="field search" style="margin:0" id="studentSearch" placeholder="Search name, phone or seat…" oninput="renderStudents()"><select id="shiftFilter" onchange="renderStudents()" style="border:1px solid #dfe5ee;border-radius:11px;padding:10px"><option value="">All plans</option><option>Day</option><option>Day-Night</option><option>Night</option></select></div>
+ <div class="tablewrap"><table><thead><tr><th>Student</th><th>Phone</th><th>Plan</th><th>Seat</th><th>Monthly Fee</th><th>Actions</th></tr></thead><tbody id="studentRows"></tbody></table></div>
+</section>
+<section class="page" id="fees">
+ <div class="sectionhead"><div><h2>Fee Management</h2><div class="muted small">Record payments and track dues</div></div><button class="btn primary" onclick="openPayment()">+ Collect Fee</button></div>
+ <div class="grid" style="margin-bottom:15px"><div class="stat"><div class="label">Collected this month</div><div class="num" id="feeCollected">₹0</div></div><div class="stat"><div class="label">Pending this month</div><div class="num" id="feeDue">₹0</div></div></div>
+ <div class="panel" style="margin-bottom:14px"><h3>Monthly due reminders</h3><div class="muted small" style="margin-bottom:10px">Send a WhatsApp reminder to students with pending fees.</div><div id="dueReminderList"></div></div>
+ <div class="toolbar"><select id="feeMonth" onchange="renderFees()" style="border:1px solid #dfe5ee;border-radius:11px;padding:10px"></select><input class="field search" id="feeSearch" style="margin:0" placeholder="Search student…" oninput="renderFees()"></div>
+ <div class="tablewrap"><table><thead><tr><th>Student</th><th>Plan</th><th>Amount Due</th><th>Paid</th><th>Status</th><th>Action</th></tr></thead><tbody id="feeRows"></tbody></table></div>
+ <p class="muted small">Payments are recorded against the selected month. Tap <b>Edit fee</b> beside any student to set a custom fee for that student and month. Changes to one month do not alter other months.</p>
+</section>
+<section class="page" id="attendance">
+ <div class="sectionhead"><div><h2>Attendance</h2><div class="muted small">Mark daily student attendance</div></div><input type="date" id="attendanceDate" onchange="renderAttendance()" style="border:1px solid #dfe5ee;border-radius:10px;padding:9px"></div>
+ <div class="toolbar"><input class="field search" style="margin:0" id="attendanceSearch" placeholder="Search student…" oninput="renderAttendance()"></div>
+ <div class="tablewrap"><table><thead><tr><th>Student</th><th>Plan</th><th>Seat</th><th>Attendance</th></tr></thead><tbody id="attendanceRows"></tbody></table></div>
+</section>
+<section class="page" id="seats">
+ <div class="sectionhead"><div><h2>Seat Management</h2><div class="muted small">50-seat overview • Tap a seat to assign or clear</div></div><span class="tag paid" id="seatSummary">0 occupied</span></div>
+ <div class="panel"><div class="quick" style="margin-bottom:14px"><span class="tag paid">Occupied</span><span class="tag" style="background:#f1fbf6;color:#16845b">Available</span></div><div class="seatgrid" id="seatGrid"></div></div>
+ <div class="panel" style="margin-top:14px"><h3>Locker management</h3><div class="toolbar"><input id="lockerCount" type="number" min="1" max="300" value="20" style="width:100px;border:1px solid #dfe5ee;border-radius:10px;padding:9px"><button class="btn secondary" onclick="setLockerCount()">Set lockers</button></div><div id="lockerGrid" class="seatgrid"></div></div>
+</section>
+<section class="page" id="reports">
+ <div class="sectionhead"><div><h2>Reports & Backup</h2><div class="muted small">Your library's collection summary</div></div></div>
+ <div class="grid"><div class="stat"><div class="label">Total Students</div><div class="num" id="repStudents">0</div></div><div class="stat"><div class="label">Lifetime Collected</div><div class="num" id="repIncome">₹0</div></div><div class="stat"><div class="label">Day Plan</div><div class="num" id="repDay">0</div></div><div class="stat"><div class="label">Night Plan</div><div class="num" id="repNight">0</div></div></div>
+ <div class="panel" style="margin-top:15px"><h3>Data backup</h3><p class="muted small">Export a backup regularly so your student and payment records are safe. You can restore a previously exported JSON backup.</p><div class="quick"><button class="btn primary" onclick="exportBackup()">Download backup</button><button class="btn secondary" onclick="document.getElementById('restoreFile').click()">Restore backup</button><button class="btn soft" onclick="exportCSV()">Export students CSV</button><input id="restoreFile" type="file" accept="application/json" class="hidden" onchange="restoreBackup(event)"></div></div>
+</section>
+<section class="page" id="whatsapp">
+ <div class="sectionhead"><div><h2>WhatsApp Communication</h2><div class="muted small">Send custom messages to selected students</div></div></div>
+ <div class="panel"><div class="toolbar"><input id="waSearch" class="field search" style="margin:0" placeholder="Search students…" oninput="renderWhatsAppStudents()"><button class="btn soft" onclick="selectAllWhatsApp(true)">Select all</button><button class="btn soft" onclick="selectAllWhatsApp(false)">Clear</button></div><div id="waStudentList" style="max-height:250px;overflow:auto"></div>
+ <div class="field" style="margin-top:15px"><label>Message template</label><select id="waTemplate" onchange="applyWhatsAppTemplate()"><option value="custom">Custom message</option><option value="fee">Fee reminder</option><option value="greeting">Festival / birthday wishes</option></select></div>
+ <div class="field"><label>Your message</label><textarea id="waMessage" rows="5" style="width:100%;border:1px solid #dfe5ee;border-radius:11px;padding:12px;font:inherit" placeholder="Hello {name}, …"></textarea><div class="muted small">Use {name}, {fee}, {month}, {library} as personal placeholders.</div></div>
+ <div class="quick"><button class="btn primary" onclick="sendSelectedWhatsApp()">Open WhatsApp for selected</button><span id="waCount" class="muted small" style="align-self:center">0 selected</span></div>
+ <div class="notice" style="margin-top:12px">WhatsApp opens a pre-filled message for each selected student. You review and tap Send in WhatsApp; the app does not send messages automatically.</div></div>
+ </section>
+<section class="page" id="settings">
+ <div class="sectionhead"><div><h2>Settings</h2><div class="muted small">Library preferences</div></div></div>
+ <div class="panel">
+  <h3>Library profile</h3><div class="formgrid"><div class="field wide"><label>Library name</label><input id="libraryName" placeholder="श्री Shyaam Library"></div><div class="field"><label>Phone / WhatsApp</label><input id="libraryPhone" placeholder="Contact number"></div><div class="field"><label>Address</label><input id="libraryAddress" placeholder="Library address"></div></div><button class="btn secondary" onclick="saveLibraryProfile()">Save library profile</button><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><h3>Fee structure</h3>
+  <div class="formgrid"><div class="field"><label>Day (₹)</label><input type="number" id="priceDay" min="0"></div><div class="field"><label>Day-Night (₹)</label><input type="number" id="priceBoth" min="0"></div><div class="field"><label>Night (₹)</label><input type="number" id="priceNight" min="0"></div><div class="field"><label>Total seats</label><input type="number" id="totalSeats" min="1" max="500"></div></div>
+  <button class="btn primary" onclick="saveSettings()">Save settings</button>
+  <div class="notice" style="margin-top:14px"><b>Library policies</b><br>• Fees are payable at the beginning of each month.<br>• No refund or adjustment on fees.<br>• Friends are not allowed inside the library with students.<br>• Seat damage / chair repair is the student's responsibility.</div>
+ </div>
+ 
+ <div class="panel" style="margin-top:14px"><h3>Admin security</h3>
+  <div class="field"><label>Change app PIN (4–8 digits)</label><input type="password" id="newPin" inputmode="numeric" maxlength="8" placeholder="Enter new PIN"></div>
+  <button class="btn primary" onclick="changePin()">Update PIN</button>
+  <div class="notice" style="margin-top:10px">The app PIN is a local device lock, not a secure server-side login. Anyone with access to browser storage or the device may be able to bypass it. Use iPhone device security as well.</div>
+ </div>
+ <div class="panel" style="margin-top:14px"><h3>Cloud database setup</h3>
+  <div class="notice">Cloud sync requires a Supabase project. Create a project, enable Email/Password Authentication, create the table using the SQL instructions below, then enter your project URL and anon key. Your data will sync under your signed-in admin account.</div>
+  <div class="cloudbox">
+   <div class="field"><label>Supabase Project URL</label><input id="sbUrl" placeholder="https://your-project.supabase.co"></div>
+   <div class="field"><label>Supabase anon / publishable key</label><input id="sbKey" placeholder="Public anon key"></div>
+   <div class="field"><label>Admin email</label><input id="sbEmail" type="email" placeholder="Your admin email"></div>
+   <div class="field"><label>Admin password</label><input id="sbPassword" type="password" placeholder="Supabase Auth password"></div>
+   <div class="quick"><button class="btn primary" onclick="connectCloud()">Sign in & Sync</button><button class="btn soft" onclick="cloudSignOut()">Sign out</button></div>
+   <div id="cloudStatus" class="small muted" style="margin-top:9px">Cloud not connected.</div>
+  </div>
+  <details style="margin-top:13px"><summary style="font-size:12px;font-weight:700;cursor:pointer">Show required Supabase SQL setup</summary>
+   <pre style="white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f7fa;padding:12px;border-radius:10px;font-size:10px">create table public.library_data (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  payload jsonb not null,
+  updated_at timestamptz default now()
+);
+alter table public.library_data enable row level security;
+create policy "Users manage own library data"
+on public.library_data for all
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);</pre>
+  </details>
+ </div>
+
+ <div class="panel" style="margin-top:14px"><h3>Important</h3><div class="notice">This first version stores data on this device/browser only. It does not yet have cloud sync, multi-device access, automatic WhatsApp reminders or a secure online admin login. Keep regular backups and do not store highly sensitive information.</div></div>
+</section>
+<div class="bottomnote">श्री Shyaam Library Pro · Admin workspace · Data stays on this device unless you configure cloud sync</div>
+</main>
+</div>
+<div class="modalback" id="modalBack" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modalhead"><h3 id="modalTitle">Add Student</h3><button class="close" onclick="closeModal()">×</button></div><div id="modalBody"></div></div></div>
+<script>
+window.addEventListener('error', function(e){
+ const box=document.getElementById('loginError');
+ if(box) box.textContent='App script error: '+(e.message||'Please reopen this file in Safari.');
+});
+const KEY='shyaam_library_v1';
+const defaults={students:[],payments:[],attendance:{},prices:{Day:500,'Day-Night':750,Night:350},basePrices:{Day:500,'Day-Night':750,Night:350},priceHistory:[],lockers:{count:20,assignments:{}},profile:{name:'श्री Shyaam Library',phone:'',address:''},totalSeats:50};
+let db=load();db.basePrices=db.basePrices||{...db.prices};db.priceHistory=db.priceHistory||[];db.profile=db.profile||{name:"श्री Shyaam Library",phone:"",address:""};db.lockers=db.lockers||{count:20,assignments:{}};
+function load(){try{const raw=JSON.parse(localStorage.getItem(KEY)||'{}');return {...structuredClone(defaults),...raw,basePrices:raw.basePrices||raw.prices||{...defaults.prices},priceHistory:raw.priceHistory||[],profile:raw.profile||{name:'श्री Shyaam Library',phone:'',address:''},lockers:raw.lockers||{count:20,assignments:{}}}}catch(e){return structuredClone(defaults)}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
+function money(n){return '₹'+Number(n||0).toLocaleString('en-IN')}
+function dateISO(d=new Date()){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function monthNow(){return dateISO().slice(0,7)}
+function monthLabel(m){let [y,mo]=m.split('-');return new Date(+y,+mo-1,1).toLocaleDateString('en-IN',{month:'long',year:'numeric'})}
+function uid(){return 'S'+Date.now().toString().slice(-8)+Math.floor(Math.random()*90+10)}
+function feeOf(s,month=monthNow()){
+ const override=Number(s?.feeOverrides?.[month]);
+ if(s?.feeOverrides && Object.prototype.hasOwnProperty.call(s.feeOverrides,month) && Number.isFinite(override)) return Math.max(0,override);
+ let prices=db.basePrices||db.prices;
+ (db.priceHistory||[]).filter(x=>x.month<=month).sort((a,b)=>a.month.localeCompare(b.month)).forEach(x=>prices=x.prices);
+ return Number(prices[s.plan]||0);
+}
+function editMonthlyFee(studentId,month){
+ const student=db.students.find(x=>x.id===studentId);if(!student)return;
+ const current=feeOf(student,month);
+ const entered=prompt('Set monthly fee for '+student.name+' — '+monthLabel(month)+' (₹):',String(current));
+ if(entered===null)return;
+ const amount=Number(entered);
+ if(entered.trim()===''||!Number.isFinite(amount)||amount<0){alert('Enter a valid fee amount (0 or more).');return;}
+ student.feeOverrides=student.feeOverrides||{};student.feeOverrides[month]=amount;save();
+ alert('Monthly fee updated for '+student.name+' for '+monthLabel(month)+'.');
+}
+function paidFor(id,month){return db.payments.filter(p=>p.studentId===id&&p.month===month).reduce((a,p)=>a+Number(p.amount),0)}
+function initials(n){return (n||'?').trim().split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
+function go(page){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===page));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===page));if(page==='students')renderStudents();if(page==='fees')renderFees();if(page==='attendance')renderAttendance();if(page==='seats'){renderSeats();renderLockers()}if(page==='whatsapp')renderWhatsAppStudents();if(page==='reports')renderReports();if(page==='settings')loadSettings();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+function openModal(title,body){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=body;document.getElementById('modalBack').classList.add('show')}
+function closeModal(){document.getElementById('modalBack').classList.remove('show')}
+function openStudent(id=''){
+ let s=db.students.find(x=>x.id===id)||{name:'',phone:'',plan:'Day',seat:'',joined:dateISO()};
+ openModal(id?'Edit Student':'Add Student',`<form id="studentForm"><div class="formgrid">
+ <div class="field wide"><label>Student name *</label><input name="name" required value="${esc(s.name)}" placeholder="Full name"></div>
+ <div class="field"><label>Mobile number</label><input name="phone" inputmode="tel" value="${esc(s.phone)}" placeholder="10-digit number"></div>
+ <div class="field"><label>Membership plan *</label><select name="plan"><option ${s.plan==='Day'?'selected':''}>Day</option><option ${s.plan==='Day-Night'?'selected':''}>Day-Night</option><option ${s.plan==='Night'?'selected':''}>Night</option></select></div>
+ <div class="field"><label>Seat number</label><input name="seat" type="number" min="1" max="${db.totalSeats}" value="${esc(s.seat||'')}" placeholder="e.g. 12"></div>
+ <div class="field"><label>Joining date</label><input name="joined" type="date" value="${esc(s.joined)}"></div></div>
+ <div class="notice">Monthly fee: <b id="planPrice">${money(db.prices[s.plan])}</b></div><div class="actions"><button type="button" class="btn soft" onclick="closeModal()">Cancel</button><button class="btn primary" type="submit">Save student</button></div></form>`);
+ const f=document.getElementById('studentForm');f.plan.addEventListener('change',()=>document.getElementById('planPrice').textContent=money(db.prices[f.plan.value]));
+ f.addEventListener('submit',e=>{e.preventDefault();let v=Object.fromEntries(new FormData(f));if(v.seat&&db.students.some(x=>x.seat==v.seat&&x.id!==id)){alert('This seat is already assigned.');return}if(id){Object.assign(s,v);s.seat=v.seat?Number(v.seat):''}else{db.students.push({id:uid(),...v,seat:v.seat?Number(v.seat):'',created:Date.now()})}closeModal();save()});
+}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function removeStudent(id){let s=db.students.find(x=>x.id===id);if(!s||!confirm('Delete '+s.name+'? Payment history and attendance for this student will also be removed.'))return;db.students=db.students.filter(x=>x.id!==id);db.payments=db.payments.filter(x=>x.studentId!==id);Object.values(db.attendance).forEach(day=>delete day[id]);save()}
+function renderStudents(){let q=(document.getElementById('studentSearch')?.value||'').toLowerCase(),p=document.getElementById('shiftFilter')?.value||'';let a=db.students.filter(s=>(!p||s.plan===p)&&[s.name,s.phone,s.seat].join(' ').toLowerCase().includes(q));document.getElementById('studentRows').innerHTML=a.length?a.map(s=>`<tr><td><b>${esc(s.name)}</b><br><span class="muted">${esc(s.id)}</span></td><td>${esc(s.phone||'—')}</td><td>${esc(s.plan)}</td><td>${s.seat||'—'}</td><td>${money(feeOf(s,monthNow()))}</td><td><button class="btn secondary" onclick="openStudent('${s.id}')">Edit</button> <button class="btn danger" onclick="removeStudent('${s.id}')">Delete</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">No students found. Add your first student.</td></tr>'}
+function monthOptions(){let el=document.getElementById('feeMonth');if(!el.options.length){for(let i=0;i<12;i++){let d=new Date();d.setDate(1);d.setMonth(d.getMonth()-i);let m=dateISO(d).slice(0,7);el.add(new Option(monthLabel(m),m))}}}
+function openPayment(studentId=''){if(!db.students.length){alert('Add a student first.');return}let opts=db.students.map(s=>`<option value="${s.id}" ${s.id===studentId?'selected':''}>${esc(s.name)} · ${s.plan} · ${money(feeOf(s,monthNow()))}</option>`).join('');let m=document.getElementById('feeMonth')?.value||monthNow();let s=db.students.find(x=>x.id===studentId)||db.students[0];openModal('Collect Fee',`<form id="paymentForm"><div class="field"><label>Student *</label><select name="studentId" id="payStudent">${opts}</select></div><div class="formgrid"><div class="field"><label>For month</label><input name="month" type="month" value="${m}" required></div><div class="field"><label>Amount received (₹) *</label><input name="amount" id="payAmount" type="number" min="1" required value="${feeOf(s,m)-paidFor(s.id,m)}"></div><div class="field wide"><label>Payment date</label><input name="date" type="date" value="${dateISO()}" required></div></div><div class="field"><label>Payment mode</label><select name="mode"><option>Cash</option><option>UPI</option><option>Bank transfer</option><option>Other</option></select></div><div class="actions"><button type="button" class="btn soft" onclick="closeModal()">Cancel</button><button class="btn primary">Save payment</button></div></form>`);let f=document.getElementById('paymentForm');f.payStudent.addEventListener('change',()=>{let st=db.students.find(x=>x.id===f.studentId.value);f.amount.value=Math.max(0,feeOf(st)-paidFor(st.id,f.month.value))});f.month.addEventListener('change',()=>{let st=db.students.find(x=>x.id===f.studentId.value);f.amount.value=Math.max(0,feeOf(st)-paidFor(st.id,f.month.value))});f.addEventListener('submit',e=>{e.preventDefault();let v=Object.fromEntries(new FormData(f));db.payments.push({id:uid(),...v,amount:Number(v.amount)});closeModal();save()})}
+function renderFees(){monthOptions();let m=document.getElementById('feeMonth').value||monthNow(),q=(document.getElementById('feeSearch')?.value||'').toLowerCase(),total=0,due=0;let rows=db.students.filter(s=>s.name.toLowerCase().includes(q)).map(s=>{let paid=paidFor(s.id,m),fee=feeOf(s,m),left=Math.max(0,fee-paid);total+=paid;due+=left;return `<tr><td><b>${esc(s.name)}</b><br><span class="muted">${esc(s.phone||'')}</span></td><td>${s.plan}</td><td>${money(fee)}</td><td>${money(paid)}</td><td><span class="tag ${left===0?'paid':'pending'}">${left===0?'Paid':paid>0?'Partial':'Pending'}</span></td><td><button class="btn soft" onclick="editMonthlyFee('${s.id}','${m}')">Edit fee</button> ${left>0?`<button class="btn secondary" onclick="openPayment('${s.id}')">Collect</button> <button class="btn soft" onclick="sendWhatsAppReminder('${s.id}','${m}',${left})">WhatsApp</button>`:(db.payments.filter(p=>p.studentId===s.id&&p.month===m).length?`<button class="btn soft" onclick="printReceipt('${db.payments.filter(p=>p.studentId===s.id&&p.month===m).slice(-1)[0].id}')">Receipt</button>`:'Paid')}</td></tr>`});document.getElementById('feeRows').innerHTML=rows.length?rows.join(''):'<tr><td colspan="6" class="empty">No students registered.</td></tr>';document.getElementById('feeCollected').textContent=money(total);document.getElementById('feeDue').textContent=money(due)}
+function renderAttendance(){let date=document.getElementById('attendanceDate').value||dateISO();document.getElementById('attendanceDate').value=date;let q=(document.getElementById('attendanceSearch')?.value||'').toLowerCase(),a=db.students.filter(s=>s.name.toLowerCase().includes(q));document.getElementById('attendanceRows').innerHTML=a.length?a.map(s=>{let st=db.attendance[date]?.[s.id]||'';return `<tr><td><b>${esc(s.name)}</b><br><span class="muted">${esc(s.phone||'')}</span></td><td>${s.plan}</td><td>${s.seat||'—'}</td><td><button class="btn ${st==='Present'?'success':'soft'}" onclick="markAttendance('${s.id}','Present')">Present</button> <button class="btn ${st==='Absent'?'danger':'soft'}" onclick="markAttendance('${s.id}','Absent')">Absent</button></td></tr>`}).join(''):'<tr><td colspan="4" class="empty">No students found.</td></tr>'}
+function markAttendance(id,status){let d=document.getElementById('attendanceDate').value||dateISO();db.attendance[d]=db.attendance[d]||{};db.attendance[d][id]=status;save();renderAttendance()}
+function renderSeats(){let used=db.students.filter(s=>s.seat).map(s=>Number(s.seat));document.getElementById('seatSummary').textContent=used.length+' occupied';document.getElementById('seatGrid').innerHTML=Array.from({length:db.totalSeats},(_,i)=>{let n=i+1,s=db.students.find(x=>Number(x.seat)===n);return `<button class="seat ${s?'occupied':'free'}" onclick="seatAction(${n})"><b>${n}</b><span>${s?esc(s.name.split(' ')[0]):'Available'}</span></button>`}).join('')}
+function seatAction(n){let s=db.students.find(x=>Number(x.seat)===n);if(s){if(confirm('Seat '+n+' is assigned to '+s.name+'. Clear this seat?')){s.seat='';save()}}else if(db.students.length){openModal('Assign seat '+n,`<div class="field"><label>Select student</label><select id="seatStudent">${db.students.filter(x=>!x.seat).map(x=>`<option value="${x.id}">${esc(x.name)} · ${x.plan}</option>`).join('')}</select></div><div class="actions"><button class="btn soft" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="assignSeat(${n})">Assign seat</button></div>`)}else alert('Add a student first.')}
+function assignSeat(n){let s=db.students.find(x=>x.id===document.getElementById('seatStudent').value);if(!s)return alert('No unassigned students available.');s.seat=n;closeModal();save()}
+function renderReports(){document.getElementById('repStudents').textContent=db.students.length;document.getElementById('repIncome').textContent=money(db.payments.reduce((a,p)=>a+Number(p.amount),0));document.getElementById('repDay').textContent=db.students.filter(s=>s.plan==='Day').length;document.getElementById('repNight').textContent=db.students.filter(s=>s.plan==='Night').length}
+function loadSettings(){document.getElementById('priceDay').value=db.prices.Day;document.getElementById('priceBoth').value=db.prices['Day-Night'];document.getElementById('priceNight').value=db.prices.Night;document.getElementById('totalSeats').value=db.totalSeats;document.getElementById('libraryName').value=db.profile?.name||'श्री Shyaam Library';document.getElementById('libraryPhone').value=db.profile?.phone||'';document.getElementById('libraryAddress').value=db.profile?.address||''}
+function saveLibraryProfile(){db.profile={name:document.getElementById('libraryName').value.trim()||'श्री Shyaam Library',phone:document.getElementById('libraryPhone').value.trim(),address:document.getElementById('libraryAddress').value.trim()};document.getElementById('brandName').textContent=db.profile.name;save();alert('Library profile saved.')}
+function saveSettings(){
+ const next={Day:Number(document.getElementById('priceDay').value),'Day-Night':Number(document.getElementById('priceBoth').value),Night:Number(document.getElementById('priceNight').value)};
+ if(Object.values(next).some(x=>!Number.isFinite(x)||x<0)){alert('Enter valid non-negative fees.');return;}
+ db.basePrices=db.basePrices||{...db.prices};db.priceHistory=db.priceHistory||[];
+ db.priceHistory=db.priceHistory.filter(x=>x.month!==monthNow());db.priceHistory.push({month:monthNow(),prices:next});db.prices=next;
+ db.totalSeats=Math.max(1,Math.min(500,Number(document.getElementById('totalSeats').value)||50));save();alert('Fees updated from '+monthLabel(monthNow())+'. Earlier months and recorded payments are preserved.');
+}
+function renderDashboard(){let m=monthNow(),income=db.payments.filter(p=>p.month===m).reduce((a,p)=>a+Number(p.amount),0),due=db.students.reduce((a,s)=>a+Math.max(0,feeOf(s,m)-paidFor(s.id,m)),0),occ=db.students.filter(s=>s.seat).length;document.getElementById('statStudents').textContent=db.students.length;document.getElementById('statIncome').textContent=money(income);document.getElementById('statPending').textContent=money(due);document.getElementById('statSeats').textContent=occ+'/'+db.totalSeats;document.getElementById('dashDate').textContent=new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});let latest=[...db.students].reverse().slice(0,5);document.getElementById('recentStudents').innerHTML=latest.length?latest.map(s=>`<div class="rowitem"><div class="person"><div class="avatar">${initials(s.name)}</div><div><b>${esc(s.name)}</b><span>${s.plan} · Seat ${s.seat||'—'}</span></div></div><span class="tag ${paidFor(s.id,m)>=feeOf(s)?'paid':'pending'}">${paidFor(s.id,m)>=feeOf(s)?'Paid':'Due'}</span></div>`).join(''):'<div class="empty">No students yet. Add a student to get started.</div>'}
+function renderAll(){renderDashboard();renderStudents();renderFees();renderAttendance();renderSeats();renderReports();renderLockers()}
+function exportBackup(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='shyaam-library-backup-'+dateISO()+'.json';a.click();URL.revokeObjectURL(a.href)}
+function restoreBackup(e){let file=e.target.files[0];if(!file)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.students)||!Array.isArray(d.payments))throw Error();if(confirm('Replace current library data with this backup?')){db={...structuredClone(defaults),...d};save();alert('Backup restored.')}}catch(err){alert('Invalid backup file.')}e.target.value=''};r.readAsText(file)}
+function exportCSV(){let rows=[['Name','Phone','Plan','Seat','Monthly Fee','Joining Date'],...db.students.map(s=>[s.name,s.phone,s.plan,s.seat,feeOf(s),s.joined])];let csv=rows.map(r=>r.map(x=>'"'+String(x??'').replace(/"/g,'""')+'"').join(',')).join('\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='shyaam-library-students.csv';a.click();URL.revokeObjectURL(a.href)}
+document.getElementById('brandName').textContent=db.profile?.name||'श्री Shyaam Library';document.getElementById('todayPill').textContent=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});document.getElementById('attendanceDate').value=dateISO();renderAll();
+
+
+// Pro Edition: lockers + multi-recipient WhatsApp + profile + PWA support
+function renderWhatsAppStudents(){const q=(document.getElementById('waSearch')?.value||'').toLowerCase();const el=document.getElementById('waStudentList');if(!el)return;el.innerHTML=db.students.filter(s=>(s.name+' '+(s.phone||'')).toLowerCase().includes(q)).map(s=>`<label class="rowitem" style="justify-content:flex-start"><input type="checkbox" class="waPick" value="${s.id}" style="width:18px;height:18px"><span><b>${esc(s.name)}</b><br><span class="muted small">${esc(s.phone||'No phone number')}</span></span></label>`).join('')||'<div class="empty">No students found.</div>';document.getElementById('waCount').textContent='0 selected';el.querySelectorAll('.waPick').forEach(x=>x.addEventListener('change',updateWaCount));}
+function updateWaCount(){document.getElementById('waCount').textContent=document.querySelectorAll('.waPick:checked').length+' selected'}
+function selectAllWhatsApp(v){document.querySelectorAll('.waPick').forEach(x=>x.checked=v);updateWaCount()}
+function applyWhatsAppTemplate(){const t=document.getElementById('waTemplate').value;const lib=db.profile?.name||'श्री Shyaam Library';document.getElementById('waMessage').value=t==='fee'?`Hello {name}, your library fee of ₹{fee} for {month} is pending at ${lib}. Kindly pay at your earliest convenience. Thank you.`:t==='greeting'?`Dear {name}, warm wishes from ${lib}! Wishing you happiness, success and good health. 🌸` : '';}
+function sendSelectedWhatsApp(){const ids=[...document.querySelectorAll('.waPick:checked')].map(x=>x.value);if(!ids.length){alert('Select at least one student.');return;}const template=document.getElementById('waMessage').value.trim();if(!template){alert('Write a message first.');return;}let list=ids.map(id=>db.students.find(s=>s.id===id)).filter(Boolean);let index=0;function next(){if(index>=list.length)return;const s=list[index++];let phone=(s.phone||'').replace(/\D/g,'');if(phone.length===10)phone='91'+phone;if(phone.length<11){alert('Skipped '+s.name+': add a valid phone number.');next();return;}const m=monthNow(),left=Math.max(0,feeOf(s,m)-paidFor(s.id,m));const msg=template.replaceAll('{name}',s.name).replaceAll('{fee}',money(left)).replaceAll('{month}',monthLabel(m)).replaceAll('{library}',db.profile?.name||'श्री Shyaam Library');window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(msg),'_blank');if(index<list.length&&confirm('WhatsApp opened for '+s.name+'. Continue with the next selected student?'))next();}next();}
+function renderLockers(){const el=document.getElementById('lockerGrid');if(!el)return;db.lockers=db.lockers||{count:20,assignments:{}};el.innerHTML=Array.from({length:db.lockers.count},(_,i)=>{let n=i+1,s=db.students.find(x=>x.id===db.lockers.assignments[n]);return `<button class="seat ${s?'occupied':'free'}" onclick="lockerAction(${n})"><b>L${n}</b><span>${s?esc(s.name.split(' ')[0]):'Available'}</span></button>`}).join('');document.getElementById('lockerCount').value=db.lockers.count;}
+function setLockerCount(){let n=Math.max(1,Math.min(300,Number(document.getElementById('lockerCount').value)||20));db.lockers=db.lockers||{assignments:{}};db.lockers.count=n;Object.keys(db.lockers.assignments||{}).forEach(k=>{if(Number(k)>n)delete db.lockers.assignments[k]});save();renderLockers()}
+function lockerAction(n){db.lockers=db.lockers||{count:20,assignments:{}};let current=db.students.find(s=>s.id===db.lockers.assignments[n]);if(current){if(confirm('Locker '+n+' is assigned to '+current.name+'. Release it?')){delete db.lockers.assignments[n];save();renderLockers();}}else{let choices=db.students.filter(s=>!Object.values(db.lockers.assignments).includes(s.id));if(!choices.length){alert('No unassigned students available.');return;}openModal('Assign locker L'+n,`<div class="field"><label>Student</label><select id="lockerStudent">${choices.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select></div><div class="actions"><button class="btn soft" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="assignLocker(${n})">Assign</button></div>`);}}
+function assignLocker(n){const id=document.getElementById('lockerStudent').value;if(!id)return;db.lockers.assignments[n]=id;closeModal();save();renderLockers()}
+
+// VERSION 2 ENHANCEMENTS
+const PIN_KEY='shyaam_admin_pin_v2';
+function unlockApp(){
+ const saved=localStorage.getItem(PIN_KEY)||'1234', entered=document.getElementById('loginPin').value;
+ if(entered===saved){document.getElementById('loginOverlay').style.display='none';document.getElementById('mainApp').style.visibility='visible';document.getElementById('loginError').textContent='';checkMonthlyReminder();}
+ else{document.getElementById('loginError').textContent='Incorrect PIN. Please try again.';document.getElementById('loginPin').value='';}
+}
+document.getElementById('loginPin').addEventListener('keydown',e=>{if(e.key==='Enter')unlockApp()});
+function changePin(){
+ const v=document.getElementById('newPin').value;
+ if(!/^\d{4,8}$/.test(v)){alert('PIN must contain 4 to 8 digits.');return;}
+ localStorage.setItem(PIN_KEY,v);document.getElementById('newPin').value='';alert('App PIN updated.');
+}
+function receiptHTML(payment){
+ const s=db.students.find(x=>x.id===payment.studentId)||{};
+ const receiptNo=payment.id||'—';
+ return `<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fee Receipt</title><style>body{font:14px Arial;padding:24px;color:#172033}.receipt{max-width:520px;margin:auto;border:1px solid #ccd3df;padding:25px;border-radius:12px}.center{text-align:center}.muted{color:#68758a}.line{border-top:1px dashed #9aa5b5;margin:18px 0}.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee}.amount{font-size:24px;font-weight:bold}@media print{button{display:none}}</style></head><body><div class="receipt"><div class="center"><h2>श्री Shyaam Library</h2><div class="muted">OFFICIAL FEE RECEIPT</div></div><div class="line"></div><div class="row"><span>Receipt No.</span><b>${esc(receiptNo)}</b></div><div class="row"><span>Date</span><b>${esc(payment.date)}</b></div><div class="row"><span>Student</span><b>${esc(s.name||'Student')}</b></div><div class="row"><span>Plan</span><b>${esc(s.plan||'')}</b></div><div class="row"><span>Fee month</span><b>${esc(monthLabel(payment.month))}</b></div><div class="row"><span>Payment mode</span><b>${esc(payment.mode||'')}</b></div><div class="line"></div><div class="center muted">Amount received</div><div class="center amount">${money(payment.amount)}</div><div class="line"></div><p class="muted center">No refund / adjustment. Thank you!</p><div class="center"><button onclick="window.print()">Print / Save PDF</button></div></div></body></html>`;
+}
+function printReceipt(paymentId){
+ const p=db.payments.find(x=>x.id===paymentId);if(!p)return;
+ const w=window.open('','_blank');if(!w){alert('Allow pop-ups to print the receipt.');return;}
+ w.document.write(receiptHTML(p));w.document.close();
+}
+function sendWhatsAppReminder(id,month,left){
+ const s=db.students.find(x=>x.id===id);if(!s)return;
+ const phone=(s.phone||'').replace(/\D/g,'');
+ if(phone.length<10){alert('Add a valid student mobile number with country code if needed.');return;}
+ const international=phone.length===10?'91'+phone:phone;
+ const msg=`Hello ${s.name}, this is a reminder from श्री Shyaam Library. Your library fee for ${monthLabel(month)} is pending. Balance: ${money(left)}. Please pay at the beginning of the month. Thank you.`;
+ window.open('https://wa.me/'+international+'?text='+encodeURIComponent(msg),'_blank');
+}
+function renderDueReminders(){
+ const el=document.getElementById('dueReminderList');if(!el)return;
+ const m=document.getElementById('feeMonth')?.value||monthNow();
+ const due=db.students.map(s=>({s,left:Math.max(0,feeOf(s,m)-paidFor(s.id,m))})).filter(x=>x.left>0);
+ el.innerHTML=due.length?due.slice(0,8).map(x=>`<div class="rowitem"><div class="person"><div class="avatar">${initials(x.s.name)}</div><div><b>${esc(x.s.name)}</b><span>${esc(x.s.phone||'No phone')} · ${money(x.left)} due</span></div></div><button class="btn soft" onclick="sendWhatsAppReminder('${x.s.id}','${m}',${x.left})">Remind</button></div>`).join(''):`<div class="muted small">No pending fees for ${monthLabel(m)}. Great work!</div>`;
+}
+function checkMonthlyReminder(){
+ const now=new Date(),key='shyaam_due_notice_'+monthNow();
+ if(now.getDate()>=1&&!localStorage.getItem(key)){
+   const pending=db.students.filter(s=>Math.max(0,feeOf(s,monthNow())-paidFor(s.id,monthNow()))>0).length;
+   if(pending){setTimeout(()=>alert(`Monthly fee check: ${pending} student(s) have pending fees for ${monthLabel(monthNow())}. Open Fees → WhatsApp to send reminders.`),700);}
+   localStorage.setItem(key,'1');
+ }
+}
+function loadCloudConfig(){
+ try{const c=JSON.parse(localStorage.getItem('shyaam_cloud_cfg')||'{}');if(c.url)document.getElementById('sbUrl').value=c.url;if(c.key)document.getElementById('sbKey').value=c.key;if(c.email)document.getElementById('sbEmail').value=c.email;}catch(e){}
+}
+let cloudSession=null;
+async function connectCloud(){
+ const url=document.getElementById('sbUrl').value.trim().replace(/\/$/,''),key=document.getElementById('sbKey').value.trim(),email=document.getElementById('sbEmail').value.trim(),password=document.getElementById('sbPassword').value;
+ const status=document.getElementById('cloudStatus');
+ if(!url||!key||!email||!password){status.textContent='Enter project URL, anon key, admin email and password.';return;}
+ status.textContent='Signing in…';
+ try{
+  localStorage.setItem('shyaam_cloud_cfg',JSON.stringify({url,key,email}));
+  let res=await fetch(url+'/auth/v1/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json','apikey':key},body:JSON.stringify({email,password})});
+  let auth=await res.json();if(!res.ok)throw Error(auth.msg||auth.message||'Authentication failed');
+  cloudSession={url,key,token:auth.access_token,user:auth.user};
+  status.textContent='Signed in. Checking cloud backup…';
+  await loadCloudThenSync();
+ }catch(e){status.textContent='Cloud error: '+e.message;cloudSession=null;}
+}
+
+async function loadCloudThenSync(){
+ if(!cloudSession)return;
+ const {url,key,token,user}=cloudSession;
+ try{
+  const endpoint=url+'/rest/v1/library_data?user_id=eq.'+encodeURIComponent(user.id)+'&select=payload';
+  const res=await fetch(endpoint,{headers:{'apikey':key,'Authorization':'Bearer '+token}});
+  if(!res.ok)throw Error((await res.text()).slice(0,200));
+  const rows=await res.json();
+  if(rows.length&&rows[0].payload&&confirm('A cloud backup exists for this admin account. Replace this device data with the cloud backup? Choose Cancel to keep this device data and upload it.')){
+    db={...structuredClone(defaults),...rows[0].payload};
+    localStorage.setItem(KEY,JSON.stringify(db));renderAll();
+  }
+  await syncCloud();
+ }catch(e){document.getElementById('cloudStatus').textContent='Cloud load failed: '+e.message;}
+}
+
+async function syncCloud(){
+ if(!cloudSession)return;
+ const {url,key,token,user}=cloudSession;
+ try{
+  const res=await fetch(url+'/rest/v1/library_data?on_conflict=user_id',{method:'POST',headers:{'Content-Type':'application/json','apikey':key,'Authorization':'Bearer '+token,'Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({user_id:user.id,payload:db,updated_at:new Date().toISOString()})});
+  if(!res.ok)throw Error((await res.text()).slice(0,220));
+  document.getElementById('cloudStatus').textContent='Cloud sync successful · '+new Date().toLocaleString();
+ }catch(e){document.getElementById('cloudStatus').textContent='Sync failed: '+e.message;}
+}
+function cloudSignOut(){cloudSession=null;document.getElementById('cloudStatus').textContent='Signed out. Local data remains on this device.';}
+const oldSave=save;
+save=function(){localStorage.setItem(KEY,JSON.stringify(db));renderAll();if(cloudSession)syncCloud();};
+const oldRenderFees=renderFees;
+renderFees=function(){oldRenderFees();renderDueReminders();};
+const oldLoadSettings=loadSettings;
+loadSettings=function(){oldLoadSettings();loadCloudConfig();};
+const oldOpenPayment=openPayment;
+openPayment=function(studentId=''){
+ oldOpenPayment(studentId);
+ const f=document.getElementById('paymentForm');
+ if(f){const submit=f.querySelector('button[type="submit"]');f.addEventListener('submit',()=>{setTimeout(()=>{const p=db.payments[db.payments.length-1];if(p&&confirm('Payment saved. Print fee receipt now?'))printReceipt(p.id);},100);},{once:true});}
+};
+
+</script>
+<script>if("serviceWorker" in navigator && location.protocol.startsWith("http")){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script>
+</body>
